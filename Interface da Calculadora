@@ -1,0 +1,100 @@
+#Interface gráfica para a caluculadora
+#objetivos:
+#Criar a interface gráfica(OK)
+#integrar o código da calculadora junto da interface e gráfica e tornar ela funcional ( )
+#Terminar de criar as funções das telas ( )
+#Fazer com que o cálculo aconteça e mostre o resultado ( )
+
+import PySimpleGUI as sg
+
+
+def opcao(): # Mostra as opções e leva o usuário para a opção desejada
+    layout = [
+        [sg.Button('Escolha uma das opções abaixo:')],
+        [sg.Button('Adição')],
+        [sg.Button('Subtração')],
+        [sg.Button('Multiplicação')],
+        [sg.Button('Divisão')]
+    ]
+    window = sg.Window('Calculadora', layout, size=(300, 200))
+    while True: #Muda de tela
+        event, values = window.read()
+        if event == sg.WINDOW_CLOSED:
+            break
+        elif event == 'Adição':
+            window.close()
+            Tela_soma()
+        elif event == 'Subtração':
+            window.close()
+            Tela_sub()
+
+
+
+
+
+def add(x, y): #Função para realizar a soma
+    return x + y
+
+def sub(x, y): #Função para realizar a subtração
+    return x - y
+
+def mult(x, y): #Função para realizar a multiplicação
+    return x * y
+
+def div(x, y): #Função para realizar a divisão
+    return x / y
+
+def Radd(): #Função que realiza o calculo e retorna a resposta
+    num1 = float(input("Digite o primeiro numero: "))
+    num2 = float(input("\nDigite o segundo numero: "))
+    print('\nO resultado da soma é ', num1, "+", num2, "=", add(num1, num2))
+
+def Rsub():  # Função que realiza o calculo e retorna a resposta
+    num1 = float(input("Digite o primeiro numero: "))
+    num2 = float(input("\nDigite o segundo numero: "))
+    print('\nO resultado da soma é ', num1, "-", num2, "=", sub(num1, num2))
+
+def Rmult():  # Função que realiza o calculo e retorna a resposta
+    num1 = float(input("Digite o primeiro numero: "))
+    num2 = float(input("\nDigite o segundo numero: "))
+    print('\nO resultado da soma é ', num1, "*", num2, "=", mult(num1, num2))
+
+def Rdiv():  # Função que realiza o calculo e retorna a resposta
+    num1 = float(input("Digite o primeiro numero: "))
+    num2 = float(input("\nDigite o segundo numero: "))
+    print('\nO resultado da soma é ', num1, "/", num2, "=", div(num1, num2))
+
+
+def Tela_soma():#Tela adição
+    layout = [
+        [sg.Text('Soma')],
+        [sg.Text('Digite o primeiro numero'), sg.InputText(key='num1')],
+        [sg.Text('Digite o segundo numero'), sg.InputText(key='num2')]
+    ]
+    window = sg.Window('Tela 2', layout, size=(300, 200))
+
+    while True:
+        event, values = window.read()
+        if event == sg.WINDOW_CLOSED:
+            break
+        elif event == 'Voltar':
+            window.close()
+            opcao()
+
+
+def Tela_sub(): #Tela Subtração
+
+
+
+
+def Tela_mult():#Tela Multiplicação
+
+
+
+
+def Tela_div():#Tela Divisão
+
+
+
+
+opcao()
