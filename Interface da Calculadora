@@ -2,7 +2,8 @@
 #objetivos:
 #Criar a interface gráfica(OK)
 #integrar o código da calculadora junto da interface e gráfica e tornar ela funcional ( )
-#Terminar de criar as funções das telas ( )
+#Terminar de criar as funções das telas (OK)
+#Fazer o botão de voltar funcionar ( )
 #Fazer com que o cálculo aconteça e mostre o resultado ( )
 
 import PySimpleGUI as sg
@@ -83,17 +84,53 @@ def Tela_soma():#Tela adição
 
 
 def Tela_sub(): #Tela Subtração
-
-
-
+    layout = [
+    [sg.Text('Subtração')],
+    [sg.Text('Digite o primeiro numero'), sg.InputText(key='num1')],
+    [sg.Text('Digite o segundo numero'), sg.InputText(key='num2')]
+    ]
+    window = sg.Window('Tela 2', layout, size=(300, 200))
+    while True:
+        event, values = window.read()
+        if event == sg.WINDOW_CLOSED:
+            break
+        elif event == 'Voltar':
+            window.close()
+            opcao()
 
 def Tela_mult():#Tela Multiplicação
+    layout = [
+        [sg.Text('Multiplicação')],
+        [sg.Text('Digite o primeiro numero'), sg.InputText(key='num1')],
+        [sg.Text('Digite o segundo numero'), sg.InputText(key='num2')]
+    ]
+    window = sg.Window('Tela 2', layout, size=(300, 200))
 
+    while True:
+        event, values = window.read()
+        if event == sg.WINDOW_CLOSED:
+            break
+        elif event == 'Voltar':
+            window.close()
+            opcao()
 
 
 
 def Tela_div():#Tela Divisão
+    layout = [
+        [sg.Text('Divisão')],
+        [sg.Text('Digite o primeiro numero'), sg.InputText(key='num1')],
+        [sg.Text('Digite o segundo numero'), sg.InputText(key='num2')]
+    ]
+    window = sg.Window('Tela 2', layout, size=(300, 200))
 
+    while True:
+        event, values = window.read()
+        if event == sg.WINDOW_CLOSED:
+            break
+        elif event == 'Voltar':
+            window.close()
+            opcao()
 
 
 
