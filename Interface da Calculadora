@@ -1,9 +1,9 @@
 #Interface gráfica para a caluculadora
 #objetivos:
 #Criar a interface gráfica(OK)
-#integrar o código da calculadora junto da interface e gráfica e tornar ela funcional ( )
+#integrar o código da calculadora junto da interface e gráfica e tornar ela funcional (OK)
 #Terminar de criar as funções das telas (OK)
-#Fazer o botão de voltar funcionar ( )
+#Fazer o botão de voltar funcionar (OK)
 #Fazer com que o cálculo aconteça e mostre o resultado ( )
 
 import PySimpleGUI as sg
@@ -11,7 +11,7 @@ import PySimpleGUI as sg
 
 def opcao(): # Mostra as opções e leva o usuário para a opção desejada
     layout = [
-        [sg.Button('Escolha uma das opções abaixo:')],
+        [sg.Text('Escolha uma das opções abaixo:', font=('Helvetica', 12, 'bold'))],
         [sg.Button('Adição')],
         [sg.Button('Subtração')],
         [sg.Button('Multiplicação')],
@@ -28,49 +28,21 @@ def opcao(): # Mostra as opções e leva o usuário para a opção desejada
         elif event == 'Subtração':
             window.close()
             Tela_sub()
-
-
-
-
-
-def add(x, y): #Função para realizar a soma
-    return x + y
-
-def sub(x, y): #Função para realizar a subtração
-    return x - y
-
-def mult(x, y): #Função para realizar a multiplicação
-    return x * y
-
-def div(x, y): #Função para realizar a divisão
-    return x / y
-
-def Radd(): #Função que realiza o calculo e retorna a resposta
-    num1 = float(input("Digite o primeiro numero: "))
-    num2 = float(input("\nDigite o segundo numero: "))
-    print('\nO resultado da soma é ', num1, "+", num2, "=", add(num1, num2))
-
-def Rsub():  # Função que realiza o calculo e retorna a resposta
-    num1 = float(input("Digite o primeiro numero: "))
-    num2 = float(input("\nDigite o segundo numero: "))
-    print('\nO resultado da soma é ', num1, "-", num2, "=", sub(num1, num2))
-
-def Rmult():  # Função que realiza o calculo e retorna a resposta
-    num1 = float(input("Digite o primeiro numero: "))
-    num2 = float(input("\nDigite o segundo numero: "))
-    print('\nO resultado da soma é ', num1, "*", num2, "=", mult(num1, num2))
-
-def Rdiv():  # Função que realiza o calculo e retorna a resposta
-    num1 = float(input("Digite o primeiro numero: "))
-    num2 = float(input("\nDigite o segundo numero: "))
-    print('\nO resultado da soma é ', num1, "/", num2, "=", div(num1, num2))
+        elif event == 'Multiplicação':
+            window.close()
+            Tela_mult()
+        elif event == 'Divisão':
+            window.close()
+            Tela_div()
 
 
 def Tela_soma():#Tela adição
     layout = [
         [sg.Text('Soma')],
         [sg.Text('Digite o primeiro numero'), sg.InputText(key='num1')],
-        [sg.Text('Digite o segundo numero'), sg.InputText(key='num2')]
+        [sg.Text('Digite o segundo numero'), sg.InputText(key='num2')],
+        [sg.Button('Calcular'), sg.Button('Voltar')],
+        [sg.Text('Resultado:'), sg.Text('', key='resultado')]
     ]
     window = sg.Window('Tela 2', layout, size=(300, 200))
 
@@ -81,13 +53,23 @@ def Tela_soma():#Tela adição
         elif event == 'Voltar':
             window.close()
             opcao()
+        elif event == 'Calcular':
+            try:
+                num1 = float(values['num1'])
+                num2 = float(values['num2'])
+                resultado = num1 + num2
+                window['resultado'].update(f'Resultado: {resultado:.2f}')
+            except ValueError:
+                sg.popup_error('Erro', 'Digite números válidos')
 
 
 def Tela_sub(): #Tela Subtração
     layout = [
     [sg.Text('Subtração')],
     [sg.Text('Digite o primeiro numero'), sg.InputText(key='num1')],
-    [sg.Text('Digite o segundo numero'), sg.InputText(key='num2')]
+    [sg.Text('Digite o segundo numero'), sg.InputText(key='num2')],
+    [sg.Button('Calcular'), sg.Button('Voltar')],
+    [sg.Text('Resultado:'), sg.Text('', key='resultado')]
     ]
     window = sg.Window('Tela 2', layout, size=(300, 200))
     while True:
@@ -97,12 +79,22 @@ def Tela_sub(): #Tela Subtração
         elif event == 'Voltar':
             window.close()
             opcao()
+        elif event == 'Calcular':
+            try:
+                num1 = float(values['num1'])
+                num2 = float(values['num2'])
+                resultado = num1 - num2
+                window['resultado'].update(f'Resultado: {resultado:.2f}')
+            except ValueError:
+                sg.popup_error('Erro', 'Digite números válidos')
 
 def Tela_mult():#Tela Multiplicação
     layout = [
         [sg.Text('Multiplicação')],
         [sg.Text('Digite o primeiro numero'), sg.InputText(key='num1')],
-        [sg.Text('Digite o segundo numero'), sg.InputText(key='num2')]
+        [sg.Text('Digite o segundo numero'), sg.InputText(key='num2')],
+        [sg.Button('Calcular'), sg.Button('Voltar')],
+        [sg.Text('Resultado:'), sg.Text('', key='resultado')]
     ]
     window = sg.Window('Tela 2', layout, size=(300, 200))
 
@@ -113,14 +105,23 @@ def Tela_mult():#Tela Multiplicação
         elif event == 'Voltar':
             window.close()
             opcao()
-
+        elif event == 'Calcular':
+            try:
+                num1 = float(values['num1'])
+                num2 = float(values['num2'])
+                resultado = num1 * num2
+                window['resultado'].update(f'Resultado: {resultado:.2f}')
+            except ValueError:
+                sg.popup_error('Erro', 'Digite números válidos')
 
 
 def Tela_div():#Tela Divisão
     layout = [
         [sg.Text('Divisão')],
         [sg.Text('Digite o primeiro numero'), sg.InputText(key='num1')],
-        [sg.Text('Digite o segundo numero'), sg.InputText(key='num2')]
+        [sg.Text('Digite o segundo numero'), sg.InputText(key='num2')],
+        [sg.Button('Calcular'), sg.Button('Voltar')],
+        [sg.Text('Resultado:'), sg.Text('', key='resultado')]
     ]
     window = sg.Window('Tela 2', layout, size=(300, 200))
 
@@ -131,7 +132,14 @@ def Tela_div():#Tela Divisão
         elif event == 'Voltar':
             window.close()
             opcao()
-
+        elif event == 'Calcular':
+            try:
+                num1 = float(values['num1'])
+                num2 = float(values['num2'])
+                resultado = num1 / num2
+                window['resultado'].update(f'Resultado: {resultado:.2f}')
+            except ValueError:
+                sg.popup_error('Erro', 'Digite números válidos')
 
 
 opcao()
